@@ -13,13 +13,13 @@ public class ClienteSwing extends JFrame {
     private JTextField cedulaField;
     private JTextField nombreField;
     private JTextField apellidoField;
-    private JTextArea estudiantesArea;
-    private PersonaService estudianteService;
+    private JTextArea personasArea;
+    private PersonaService personaService;
 
     public ClienteSwing() {
-        estudianteService = new PersonaService();
+        personaService = new PersonaService();
 
-        setTitle("Registro de Estudiantes");
+        setTitle("Registro de Personas");
         setSize(400, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
@@ -41,38 +41,38 @@ public class ClienteSwing extends JFrame {
         registrarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                registrarEstudiante();
+                registrarPersona();
             }
         });
         panel.add(registrarButton);
 
-        JButton obtenerButton = new JButton("Obtener Estudiantes");
+        JButton obtenerButton = new JButton("Obtener Personas");
         obtenerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                obtenerEstudiantes();
+                obtenerPersonas();
             }
         });
         panel.add(obtenerButton);
 
         add(panel, BorderLayout.NORTH);
 
-        estudiantesArea = new JTextArea();
-        add(new JScrollPane(estudiantesArea), BorderLayout.CENTER);
+        personasArea = new JTextArea();
+        add(new JScrollPane(personasArea), BorderLayout.CENTER);
     }
 
-    private void registrarEstudiante() {
+    private void registrarPersona() {
         try {
             String cedula = cedulaField.getText();
             String nombre = nombreField.getText();
             String apellido = apellidoField.getText();
 
-            Persona estudiante = new Persona();
-            estudiante.setDni(cedula);
-            estudiante.setNombre(nombre);
-            estudiante.setApellido(apellido);
+            Persona persona = new Persona();
+            persona.setDni(cedula);
+            persona.setNombre(nombre);
+            persona.setApellido(apellido);
 
-            String mensaje = estudianteService.registrarEstudiante(estudiante);
+            String mensaje = personaService.registrarPersona(persona);
             JOptionPane.showMessageDialog(this, mensaje);
         } catch (Exception e) {
             e.printStackTrace();
@@ -80,12 +80,12 @@ public class ClienteSwing extends JFrame {
         }
     }
 
-    private void obtenerEstudiantes() {
+    private void obtenerPersonas() {
         try {
-            List<Persona> estudiantes = estudianteService.obtenerEstudiantes();
-            estudiantesArea.setText("");
-            for (Persona estudiante : estudiantes) {
-                estudiantesArea.append(estudiante.toString() + "\n");
+            List<Persona> personas = personaService.obtenerPersonas();
+            personasArea.setText("");
+            for (Persona persona : personas) {
+                personasArea.append(persona.toString() + "\n");
             }
         } catch (Exception e) {
             e.printStackTrace();

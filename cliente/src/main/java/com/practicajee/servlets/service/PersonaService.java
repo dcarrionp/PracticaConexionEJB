@@ -12,7 +12,7 @@ import java.util.List;
 
 public class PersonaService {
 
-    private static final String BASE_URL = "http://localhost:8080/cliente/api/estudiantes";
+    private static final String BASE_URL = "http://localhost:8080/cliente/api/personas";
     private final HttpClient client;
     private final ObjectMapper mapper;
 
@@ -21,8 +21,8 @@ public class PersonaService {
         this.mapper = new ObjectMapper();
     }
 
-    public String registrarEstudiante(Persona estudiante) throws Exception {
-        String json = mapper.writeValueAsString(estudiante);
+    public String registrarPersona(Persona persona) throws Exception {
+        String json = mapper.writeValueAsString(persona);
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(new URI(BASE_URL))
                 .header("Content-Type", "application/json")
@@ -31,15 +31,15 @@ public class PersonaService {
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         if (response.statusCode() == 201) {
-            return "Estudiante registrado con éxito";
+            return "Persona registrado con éxito";
         } else if (response.statusCode() == 409) {
             return "Cédula ya agregada";
         } else {
-            throw new Exception("Error al registrar estudiante: " + response.body());
+            throw new Exception("Error al registrar persona: " + response.body());
         }
     }
 
-    public List<Persona> obtenerEstudiantes() throws Exception {
+    public List<Persona> obtenerPersonas() throws Exception {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(new URI(BASE_URL))
                 .GET()
@@ -49,7 +49,7 @@ public class PersonaService {
         if (response.statusCode() == 200) {
             return mapper.readValue(response.body(), new TypeReference<List<Persona>>() {});
         } else {
-            throw new Exception("Error al obtener estudiantes: " + response.body());
+            throw new Exception("Error al obtener personas: " + response.body());
         }
     }
     
