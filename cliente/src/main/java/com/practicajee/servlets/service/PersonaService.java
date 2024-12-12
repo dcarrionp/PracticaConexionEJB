@@ -12,7 +12,7 @@ import java.util.List;
 
 public class PersonaService {
 
-    private static final String BASE_URL = "http://localhost:8080/cliente/api/personas";
+    private static final String BASE_URL = "http://localhost:8080/server2/api/persona";
     private final HttpClient client;
     private final ObjectMapper mapper;
 

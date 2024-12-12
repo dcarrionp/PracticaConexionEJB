@@ -1,7 +1,12 @@
-package com.practicajee.servlets.model;
+package practicajee.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
 public class Persona {
 
+    @Id
     private String dni;
     private String nombre;
     private String apellido;
@@ -28,15 +33,6 @@ public class Persona {
 
     public void setApellido(String apellido) {
         this.apellido = apellido;
-    }
-
-    @Override
-    public String toString() {
-        return "Persona{" +
-                "dni='" + dni + '\'' +
-                ", nombre='" + nombre + '\'' +
-                ", apellido='" + apellido + '\'' +
-                '}';
     }
     
 }

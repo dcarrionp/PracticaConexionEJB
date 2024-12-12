@@ -1,0 +1,5 @@
+practicajee\service\PersonaService.class
+practicajee\service\RestApplication.class
+practicajee\exception\DuplicateCedulaException.class
+practicajee\model\Persona.class
+practicajee\dao\PersonaDAO.class
