@@ -13,7 +13,6 @@ public class ClienteSwing extends JFrame {
     private JTextField cedulaField;
     private JTextField nombreField;
     private JTextField apellidoField;
-    private JTextField edadField; // New text field for Age
     private JTextArea personasArea;
     private PersonaService personaService;
 
@@ -43,10 +42,6 @@ public class ClienteSwing extends JFrame {
         panel.add(new JLabel("Apellido:", JLabel.RIGHT));
         apellidoField = new JTextField();
         panel.add(apellidoField);
-
-        panel.add(new JLabel("Edad:", JLabel.RIGHT)); // Label for Age
-        edadField = new JTextField();
-        panel.add(edadField);
 
         // Botones de registro y obtener
         JButton registrarButton = new JButton("Registrar");
@@ -95,16 +90,11 @@ public class ClienteSwing extends JFrame {
             String cedula = cedulaField.getText();
             String nombre = nombreField.getText();
             String apellido = apellidoField.getText();
-            String edadText = edadField.getText(); // Get the age input
-            
-            // Convert age text to integer
-            int edad = Integer.parseInt(edadText);
 
             Persona persona = new Persona();
             persona.setDni(cedula);
             persona.setNombre(nombre);
             persona.setApellido(apellido);
-            persona.setEdad(edad); // Set the age
 
             String mensaje = personaService.registrarPersona(persona);
             JOptionPane.showMessageDialog(this, mensaje);

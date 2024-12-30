@@ -1,0 +1,6 @@
+practicajee\service\CORSPolicy.class
+practicajee\service\PersonaService.class
+practicajee\model\Persona.class
+practicajee\service\RestApplication.class
+practicajee\exception\DuplicateCedulaException.class
+practicajee\dao\PersonaDAO.class
